@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from os.path import exists
+import platform
 from version import get_git_version
 
 try:
@@ -37,7 +38,9 @@ setup(
     ],
     install_requires=[
         'Django >= 1.6.0',
-        'psycopg2',
+        'psycopg2cffi'
+        if platform.python_implementation() == "PyPy"
+        else 'psycopg2',
     ],
     zip_safe=False,
 )
